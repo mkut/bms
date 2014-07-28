@@ -54,7 +54,7 @@ namespace BMS
 			Bmp = new Dictionary<int, string>(bmp);
 			Total = total;
 			Random = random;
-			Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>(Objects);
+			Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>(objects);
 		}
 	}
 
