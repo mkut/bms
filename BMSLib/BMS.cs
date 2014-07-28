@@ -24,6 +24,7 @@ namespace BMS
 		// if
 		// endif
 		// extchr
+		public readonly Dictionary<int, Dictionary<int, List<List<int>>>> Objects;
 
 		internal BMS(int player,
 			string genre,
@@ -37,7 +38,8 @@ namespace BMS
 			Dictionary<int, string> wav,
 			Dictionary<int, string> bmp,
 			int total,
-			int random)
+			int random,
+			Dictionary<int, Dictionary<int, List<List<int>>>> objects)
 		{
 			Player = player;
 			Genre = genre;
@@ -52,6 +54,7 @@ namespace BMS
 			Bmp = new Dictionary<int, string>(bmp);
 			Total = total;
 			Random = random;
+			Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>(Objects);
 		}
 	}
 
@@ -94,7 +97,8 @@ namespace BMS
 				Wav,
 				Bmp,
 				Total,
-				Random);
+				Random,
+				Objects);
 		}
 	}
 
