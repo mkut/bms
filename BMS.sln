@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS", "BMSLib\BMS.csproj", "{8706F866-316E-4072-9952-A5F0C0DB15A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMSLib", "BMSLib\BMSLib.csproj", "{8706F866-316E-4072-9952-A5F0C0DB15A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMS.Test", "BMSLib.Test\BMS.Test.csproj", "{A75A026B-59D9-4ECF-8D05-6A05F7165AB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMSLib.Test", "BMSLib.Test\BMSLib.Test.csproj", "{A75A026B-59D9-4ECF-8D05-6A05F7165AB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
