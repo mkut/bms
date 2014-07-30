@@ -106,15 +106,4 @@ namespace BMS
 	{
 		void ApplyTo(BMS.Builder builder);
 	}
-
-	public static class Command
-	{
-		public static ICommand Empty = new EmptyCommand();
-	}
-
-	internal class EmptyCommand : ICommand
-	{
-		internal EmptyCommand() { }
-		public void ApplyTo(BMS.Builder builder) { }
-	}
 }
