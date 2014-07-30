@@ -5,76 +5,76 @@ using System.Text;
 
 namespace BMS
 {
-	class HeaderInt : Header<BMSCommandKey.Int, int>, IBMSCommand
+	class HeaderInt : Header<CommandKey.Int, int>, ICommand
 	{
-		public HeaderInt(BMSCommandKey.Int command, int value)
+		public HeaderInt(CommandKey.Int command, int value)
 			: base(command, value) { }
 
 		public void ApplyTo(BMSBuilder builder)
 		{
 			switch (Command)
 			{
-				case BMSCommandKey.Int.Player:
+				case CommandKey.Int.Player:
 					builder.Player = Value;
 					break;
-				case BMSCommandKey.Int.BPM:
+				case CommandKey.Int.BPM:
 					builder.BPM = Value;
 					break;
-				case BMSCommandKey.Int.PlayLevel:
+				case CommandKey.Int.PlayLevel:
 					builder.PlayLevel = Value;
 					break;
-				case BMSCommandKey.Int.Rank:
+				case CommandKey.Int.Rank:
 					builder.Rank = Value;
 					break;
-				case BMSCommandKey.Int.VolWav:
+				case CommandKey.Int.VolWav:
 					builder.VolWav = Value;
 					break;
-				case BMSCommandKey.Int.Total:
+				case CommandKey.Int.Total:
 					builder.Total = Value;
 					break;
-				case BMSCommandKey.Int.Random:
+				case CommandKey.Int.Random:
 					builder.Random = Value;
 					break;
 			}
 		}
 	}
-	class HeaderString : Header<BMSCommandKey.String, string>, IBMSCommand
+	class HeaderString : Header<CommandKey.String, string>, ICommand
 	{
-		public HeaderString(BMSCommandKey.String command, string value)
+		public HeaderString(CommandKey.String command, string value)
 			: base(command, value) { }
 
 		public void ApplyTo(BMSBuilder builder)
 		{
 			switch (Command)
 			{
-				case BMSCommandKey.String.Genre:
+				case CommandKey.String.Genre:
 					builder.Genre = Value;
 					break;
-				case BMSCommandKey.String.Title:
+				case CommandKey.String.Title:
 					builder.Title = Value;
 					break;
-				case BMSCommandKey.String.Artist:
+				case CommandKey.String.Artist:
 					builder.Artist = Value;
 					break;
-				case BMSCommandKey.String.MidiFile:
+				case CommandKey.String.MidiFile:
 					builder.MidiFile = Value;
 					break;
 			}
 		}
 	}
-	class HeaderStringDictionary : Header<BMSCommandKey.StringDictionary, KeyValuePair<int, string>>, IBMSCommand
+	class HeaderStringDictionary : Header<CommandKey.StringDictionary, KeyValuePair<int, string>>, ICommand
 	{
-		public HeaderStringDictionary(BMSCommandKey.StringDictionary command, KeyValuePair<int, string> value)
+		public HeaderStringDictionary(CommandKey.StringDictionary command, KeyValuePair<int, string> value)
 			: base(command, value) { }
 
 		public void ApplyTo(BMSBuilder builder)
 		{
 			switch (Command)
 			{
-				case BMSCommandKey.StringDictionary.Wav:
+				case CommandKey.StringDictionary.Wav:
 					builder.Wav[Value.Key] = Value.Value;
 					break;
-				case BMSCommandKey.StringDictionary.Bmp:
+				case CommandKey.StringDictionary.Bmp:
 					builder.Bmp[Value.Key] = Value.Value;
 					break;
 			}

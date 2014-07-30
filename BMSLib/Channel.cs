@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BMS
 {
-	class ChannelCommand : IBMSCommand
+	class ChannelCommand : ICommand
 	{
 		public int Measure;
 		public int Channel;

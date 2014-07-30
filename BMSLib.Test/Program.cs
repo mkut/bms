@@ -12,12 +12,12 @@ namespace BMS.Test
 		{
 			try
 			{
-				BMS bms = BMSReader.ReadFile("bms/-+_H.bme");
+				BMS bms = Reader.ReadFile("bms/-+_H.bme");
 				//BMS bms = BMSReader.Read("#WAV01 hoge\n#WAV02 hogehoge\n");
 				System.Console.WriteLine(bms.Wav.Keys.Contains(1) ? bms.Wav[1] : null);
 				System.Console.WriteLine(bms.Wav.Keys.Contains(2) ? bms.Wav[2] : null);
 			}
-			catch (BMSParseException)
+			catch (ParseException)
 			{
 				System.Console.WriteLine("parse failed");
 			}

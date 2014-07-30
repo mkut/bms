@@ -102,17 +102,17 @@ namespace BMS
 		}
 	}
 
-	public interface IBMSCommand
+	public interface ICommand
 	{
 		void ApplyTo(BMSBuilder builder);
 	}
 
 	public static class BMSCommand
 	{
-		public static IBMSCommand Empty = new EmptyCommand();
+		public static ICommand Empty = new EmptyCommand();
 	}
 
-	internal class EmptyCommand : IBMSCommand
+	internal class EmptyCommand : ICommand
 	{
 		internal EmptyCommand() { }
 		public void ApplyTo(BMSBuilder builder) { }

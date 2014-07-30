@@ -5,7 +5,7 @@ using CSParsec;
 
 namespace BMS
 {
-	public static class BMSReader
+	public static class Reader
 	{
 		public static BMS ReadFile(string path)
 		{
@@ -24,7 +24,7 @@ namespace BMS
 			}
 			catch (ParseException)
 			{
-				throw new BMSParseException();
+				throw new ParseException();
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace BMS
 			from eof in Combinator.Eof()
 			select headers.Aggregate(new BMSBuilder(), (builder, command) => { command.ApplyTo(builder); return builder; }).Build();
 
-		private static Parser<IBMSCommand> Line()
+		private static Parser<ICommand> Line()
 		{
 			return Header()
 				.Or(Channel())
@@ -41,9 +41,9 @@ namespace BMS
 				.Or(UnknownCommand());
 		}
 
-		private static Parser<IBMSCommand> CommentLine()
+		private static Parser<ICommand> CommentLine()
 		{
-			Parser<IBMSCommand> commentLine =
+			Parser<ICommand> commentLine =
 				from x in Char.NoneOf("#")
 				from y in Text
 				from z in Char.GenericNewline()
@@ -51,16 +51,16 @@ namespace BMS
 			return Char.GenericNewline().Select(any => BMSCommand.Empty).Or(commentLine);
 		}
 
-		private static Parser<IBMSCommand> Header()
+		private static Parser<ICommand> Header()
 		{
-			return HeaderInt().Select(x => x as IBMSCommand)
-				.Or(HeaderString().Select(x => x as IBMSCommand))
-				.Or(HeaderStringDictionary().Select(x => x as IBMSCommand));
+			return HeaderInt().Select(x => x as ICommand)
+				.Or(HeaderString().Select(x => x as ICommand))
+				.Or(HeaderStringDictionary().Select(x => x as ICommand));
 		}
 
-		private static Parser<IBMSCommand> UnknownCommand()
+		private static Parser<ICommand> UnknownCommand()
 		{
-			System.Func<string, IBMSCommand> f = a =>
+			System.Func<string, ICommand> f = a =>
 				{
 					System.Console.WriteLine(a);
 					return BMSCommand.Empty;
@@ -76,7 +76,7 @@ namespace BMS
 		{
 			return
 				from x in CommandHead
-				from command in HeaderCommand<BMSCommandKey.Int>()
+				from command in HeaderCommand<CommandKey.Int>()
 				from y in Separator
 				from value in Char.Number()
 				from z in Char.GenericNewline()
@@ -86,7 +86,7 @@ namespace BMS
 		{
 			return
 				from x in CommandHead
-				from command in HeaderCommand<BMSCommandKey.String>()
+				from command in HeaderCommand<CommandKey.String>()
 				from y in Separator
 				from value in Text
 				from z in Char.GenericNewline()
@@ -96,14 +96,14 @@ namespace BMS
 		{
 			return
 				from x in CommandHead
-				from command in HeaderCommand<BMSCommandKey.StringDictionary>()
+				from command in HeaderCommand<CommandKey.StringDictionary>()
 				from key in FixedNumberBase36(2)
 				from y in Separator
 				from value in Text
 				from z in Char.GenericNewline()
 				select new HeaderStringDictionary(command, new KeyValuePair<int, string>(key, value));
 		}
-		private static Parser<IBMSCommand> Channel()
+		private static Parser<ICommand> Channel()
 		{
 			return
 				from x in CommandHead
@@ -112,7 +112,7 @@ namespace BMS
 				from y in Char.Character(':')
 				from objects in FixedNumberBase36(2).Many1()
 				from z in Char.GenericNewline()
-				select new ChannelCommand(measure, channel, new List<int>(objects)) as IBMSCommand;
+				select new ChannelCommand(measure, channel, new List<int>(objects)) as ICommand;
 		}
 
 		private static Parser<T> HeaderCommand<T>()

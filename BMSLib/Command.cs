@@ -6,7 +6,7 @@ using CSParsec;
 
 namespace BMS
 {
-	public static class BMSCommandKey
+	public static class CommandKey
 	{
 		public enum Int
 		{

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BMS
 {
-	public class BMSParseException : Exception
+	public class ParseException : Exception
 	{
 	}
 }
