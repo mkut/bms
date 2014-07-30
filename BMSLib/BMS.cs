@@ -107,7 +107,7 @@ namespace BMS
 		void ApplyTo(BMSBuilder builder);
 	}
 
-	public static class BMSCommand
+	public static class Command
 	{
 		public static ICommand Empty = new EmptyCommand();
 	}

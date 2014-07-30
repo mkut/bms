@@ -47,8 +47,8 @@ namespace BMS
 				from x in Char.NoneOf("#")
 				from y in Text
 				from z in Char.GenericNewline()
-				select BMSCommand.Empty;
-			return Char.GenericNewline().Select(any => BMSCommand.Empty).Or(commentLine);
+				select Command.Empty;
+			return Char.GenericNewline().Select(any => Command.Empty).Or(commentLine);
 		}
 
 		private static Parser<ICommand> Header()
@@ -63,7 +63,7 @@ namespace BMS
 			System.Func<string, ICommand> f = a =>
 				{
 					System.Console.WriteLine(a);
-					return BMSCommand.Empty;
+					return Command.Empty;
 				};
 			return
 				from x in CommandHead
