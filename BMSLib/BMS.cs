@@ -56,55 +56,55 @@ namespace BMS
 			Random = random;
 			Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>(objects);
 		}
-	}
 
-	public class BMSBuilder
-	{
-		public int Player;
-		public string Genre;
-		public string Title;
-		public string Artist;
-		public int BPM;
-		public string MidiFile;
-		public int PlayLevel;
-		public int Rank;
-		public int VolWav;
-		public Dictionary<int, string> Wav { get; private set; }
-		public Dictionary<int, string> Bmp { get; private set; }
-		public int Total;
-		public int Random;
-		public Dictionary<int, Dictionary<int, List<List<int>>>> Objects { get; private set; }
-
-		public BMSBuilder()
+		public class Builder
 		{
-			Wav = new Dictionary<int, string>();
-			Bmp = new Dictionary<int, string>();
-			Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>();
-		}
+			public int Player;
+			public string Genre;
+			public string Title;
+			public string Artist;
+			public int BPM;
+			public string MidiFile;
+			public int PlayLevel;
+			public int Rank;
+			public int VolWav;
+			public Dictionary<int, string> Wav { get; private set; }
+			public Dictionary<int, string> Bmp { get; private set; }
+			public int Total;
+			public int Random;
+			public Dictionary<int, Dictionary<int, List<List<int>>>> Objects { get; private set; }
 
-		public BMS Build()
-		{
-			return new BMS(
-				Player,
-				Genre,
-				Title,
-				Artist,
-				BPM,
-				MidiFile,
-				PlayLevel,
-				Rank,
-				VolWav,
-				Wav,
-				Bmp,
-				Total,
-				Random,
-				Objects);
+			public Builder()
+			{
+				Wav = new Dictionary<int, string>();
+				Bmp = new Dictionary<int, string>();
+				Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>();
+			}
+
+			public BMS Build()
+			{
+				return new BMS(
+					Player,
+					Genre,
+					Title,
+					Artist,
+					BPM,
+					MidiFile,
+					PlayLevel,
+					Rank,
+					VolWav,
+					Wav,
+					Bmp,
+					Total,
+					Random,
+					Objects);
+			}
 		}
 	}
 
 	public interface ICommand
 	{
-		void ApplyTo(BMSBuilder builder);
+		void ApplyTo(BMS.Builder builder);
 	}
 
 	public static class Command
@@ -115,6 +115,6 @@ namespace BMS
 	internal class EmptyCommand : ICommand
 	{
 		internal EmptyCommand() { }
-		public void ApplyTo(BMSBuilder builder) { }
+		public void ApplyTo(BMS.Builder builder) { }
 	}
 }

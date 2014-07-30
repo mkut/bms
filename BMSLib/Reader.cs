@@ -31,7 +31,7 @@ namespace BMS
 		private static readonly Parser<BMS> bmsParser =
 			from headers in Line().Many()
 			from eof in Combinator.Eof()
-			select headers.Aggregate(new BMSBuilder(), (builder, command) => { command.ApplyTo(builder); return builder; }).Build();
+			select headers.Aggregate(new BMS.Builder(), (builder, command) => { command.ApplyTo(builder); return builder; }).Build();
 
 		private static Parser<ICommand> Line()
 		{

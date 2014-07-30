@@ -18,7 +18,7 @@ namespace BMS
 			Objects = new List<int>(objects);
 		}
 
-		public void ApplyTo(BMSBuilder builder)
+		public void ApplyTo(BMS.Builder builder)
 		{
 			if (!builder.Objects.ContainsKey(Channel))
 			{

@@ -10,7 +10,7 @@ namespace BMS
 		public HeaderInt(CommandKey.Int command, int value)
 			: base(command, value) { }
 
-		public void ApplyTo(BMSBuilder builder)
+		public void ApplyTo(BMS.Builder builder)
 		{
 			switch (Command)
 			{
@@ -43,7 +43,7 @@ namespace BMS
 		public HeaderString(CommandKey.String command, string value)
 			: base(command, value) { }
 
-		public void ApplyTo(BMSBuilder builder)
+		public void ApplyTo(BMS.Builder builder)
 		{
 			switch (Command)
 			{
@@ -67,7 +67,7 @@ namespace BMS
 		public HeaderStringDictionary(CommandKey.StringDictionary command, KeyValuePair<int, string> value)
 			: base(command, value) { }
 
-		public void ApplyTo(BMSBuilder builder)
+		public void ApplyTo(BMS.Builder builder)
 		{
 			switch (Command)
 			{
