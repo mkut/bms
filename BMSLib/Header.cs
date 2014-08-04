@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BMS.Resource;
 
 namespace BMS
 {
@@ -72,10 +73,10 @@ namespace BMS
 			switch (Command)
 			{
 				case CommandKey.StringDictionary.Wav:
-					builder.Wav[Value.Key] = Value.Value;
+					builder.Wav[Value.Key] = new Resource<WavResourceType>(Value.Value);
 					break;
 				case CommandKey.StringDictionary.Bmp:
-					builder.Bmp[Value.Key] = Value.Value;
+					builder.Bmp[Value.Key] = new Resource<BmpResourceType>(Value.Value);
 					break;
 			}
 		}

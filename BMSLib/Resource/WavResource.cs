@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace BMS.Resource
 {
 	public class WavResourceType : IResourceType
@@ -11,7 +12,8 @@ namespace BMS.Resource
 
 		public string ToExt() { return ext; }
 
-		public static WavResourceType BMP = new WavResourceType("wav");
-		public static WavResourceType MPG = new WavResourceType("ogg");
+		public static WavResourceType WAV = new WavResourceType("wav");
+		public static WavResourceType OGG = new WavResourceType("ogg");
+		public static List<IResourceType> TypeList = new List<IResourceType> { WAV, OGG };
 	}
 }

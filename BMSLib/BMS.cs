@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System;
 using CSParsec;
+using BMS.Resource;
 
 namespace BMS
 {
@@ -17,8 +18,8 @@ namespace BMS
 		public readonly int PlayLevel;
 		public readonly int Rank;
 		public readonly int VolWav;
-		public readonly Dictionary<int, string> Wav;
-		public readonly Dictionary<int, string> Bmp;
+		public readonly Dictionary<int, Resource<WavResourceType>> Wav;
+		public readonly Dictionary<int, Resource<BmpResourceType>> Bmp;
 		public readonly int Total;
 		public readonly int Random;
 		// if
@@ -26,7 +27,8 @@ namespace BMS
 		// extchr
 		public readonly Dictionary<int, Dictionary<int, List<List<int>>>> Objects;
 
-		internal BMS(int player,
+		internal BMS(
+			int player,
 			string genre,
 			string title,
 			string artist,
@@ -35,8 +37,8 @@ namespace BMS
 			int playLevel,
 			int rank,
 			int volWav,
-			Dictionary<int, string> wav,
-			Dictionary<int, string> bmp,
+			Dictionary<int, Resource<WavResourceType>> wav,
+			Dictionary<int, Resource<BmpResourceType>> bmp,
 			int total,
 			int random,
 			Dictionary<int, Dictionary<int, List<List<int>>>> objects)
@@ -50,8 +52,8 @@ namespace BMS
 			PlayLevel = playLevel;
 			Rank = rank;
 			VolWav = volWav;
-			Wav = new Dictionary<int, string>(wav);
-			Bmp = new Dictionary<int, string>(bmp);
+			Wav = new Dictionary<int, Resource<WavResourceType>>(wav);
+			Bmp = new Dictionary<int, Resource<BmpResourceType>>(bmp);
 			Total = total;
 			Random = random;
 			Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>(objects);
@@ -68,16 +70,16 @@ namespace BMS
 			public int PlayLevel;
 			public int Rank;
 			public int VolWav;
-			public Dictionary<int, string> Wav { get; private set; }
-			public Dictionary<int, string> Bmp { get; private set; }
+			public Dictionary<int, Resource<WavResourceType>> Wav { get; private set; }
+			public Dictionary<int, Resource<BmpResourceType>> Bmp { get; private set; }
 			public int Total;
 			public int Random;
 			public Dictionary<int, Dictionary<int, List<List<int>>>> Objects { get; private set; }
 
 			public Builder()
 			{
-				Wav = new Dictionary<int, string>();
-				Bmp = new Dictionary<int, string>();
+				Wav = new Dictionary<int, Resource<WavResourceType>>();
+				Bmp = new Dictionary<int, Resource<BmpResourceType>>();
 				Objects = new Dictionary<int, Dictionary<int, List<List<int>>>>();
 			}
 

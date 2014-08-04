@@ -12,11 +12,13 @@ namespace BMS
 			using (StreamReader r = new StreamReader(new FileStream(path, FileMode.Open, FileAccess.Read)))
 			{
 				string str = r.ReadToEnd();
-				return Read(str);
+				return Read(str, Path.GetDirectoryName(path));
 			}
 		}
-		public static BMS Read(string str)
+		public static BMS Read(string str, string rootDirectory)
 		{
+			string cd = Directory.GetCurrentDirectory();
+			Directory.SetCurrentDirectory(rootDirectory);
 			try
 			{
 				BMS ret = bmsParser.Parse(str);
@@ -25,6 +27,10 @@ namespace BMS
 			catch (ParseException)
 			{
 				throw new ParseException();
+			}
+			finally
+			{
+				Directory.SetCurrentDirectory(cd);
 			}
 		}
 
