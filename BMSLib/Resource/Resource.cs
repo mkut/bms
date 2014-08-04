@@ -13,7 +13,7 @@ namespace BMS.Resource
 		{
 			foreach (var type in Enum.GetValues(typeof(T)))
 			{
-				string newFilename = ChangeExt(filename, (T)type);
+				string newFilename = Path.ChangeExtension(filename, ((T)type).ToExt());
 				if (File.Exists(newFilename))
 				{
 					ResourceType = (T)type;
@@ -22,16 +22,6 @@ namespace BMS.Resource
 				}
 			}
 			throw new FileNotFoundException();
-		}
-
-		public static string ChangeExt(string filename, T type)
-		{
-			int pos = filename.LastIndexOf(".");
-			if (pos == -1)
-			{
-				return filename + "." + type.ToExt();
-			}
-			return filename.Substring(0, pos) + "." + type.ToExt();
 		}
 	}
 
